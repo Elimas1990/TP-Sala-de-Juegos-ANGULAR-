@@ -10,6 +10,7 @@ import { PrincipalComponent } from '../componentes/principal/principal.component
 import { AgilidadAritmeticaComponent } from '../componentes/agilidad-aritmetica/agilidad-aritmetica.component';
 import { MenuComponent } from '../componentes/menu/menu.component';
 import { AdivinaMasListadoComponent } from '../componentes/adivina-mas-listado/adivina-mas-listado.component';
+import { AnagramaComponent } from '../componentes/anagrama/anagrama.component';
 import { AgilidadMasListadoComponent } from '../componentes/agilidad-mas-listado/agilidad-mas-listado.component';
 import { ListadoComponent } from'../componentes/listado/listado.component'
 import { ListadosComponent } from '../componentes/listados/listados.component';
@@ -42,6 +43,7 @@ children:
      {path: 'Adivina' , component: AdivinaElNumeroComponent},
       {path: 'AdivinaMasListado' , component: AdivinaMasListadoComponent},
       {path: 'AgilidadaMasListado' , component: AgilidadMasListadoComponent},
+      {path: 'Anagrama' , component: AnagramaComponent},
       {path: 'Agilidad' , component: AgilidadAritmeticaComponent}]
 },
 {path: '**' , component: ErrorComponent},
