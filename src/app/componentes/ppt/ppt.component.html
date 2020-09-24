@@ -1,0 +1,70 @@
+
+<div class="row mt-5">
+    <div class="col d-flex justify-content-end">
+        <h1>Player</h1>
+        <div [ngSwitch]="pptPlayer">
+            <div *ngSwitchCase="'piedra'">
+                <img src="../../../assets/imagenes/piedra.jpg" alt="" class="rounded-circle img-ppt">
+            </div>
+            <div *ngSwitchCase="'papel'">
+                <img src="../../../assets/imagenes/papel.jpg" alt="" class="rounded-circle img-ppt">
+            </div>
+            <div *ngSwitchCase="'tijera'">
+                <img src="../../../assets/imagenes/tijera.jpg" alt="" class="rounded-circle img-ppt">
+            </div>
+            <div *ngSwitchDefault>
+                <img src="../../../assets/imagenes/cualsera.png" alt="" class="rounded-circle img-ppt">
+            </div>
+        </div>
+    </div>
+    <div class="col d-flex justify-content-center align-items-center flex-column">
+        <div ><h1 >VS</h1></div>
+        <div class="p-2">
+            
+            <div class="btn-group btn-group-lg" >
+                <button class="btn btn-success" (click)="pptPlayer='piedra';seleccionarOpcion()" [disabled]="expression">Piedra</button>
+                <button class="btn btn-danger" (click)="pptPlayer='papel';seleccionarOpcion()" [disabled]="expression">Papel</button>
+                <button class="btn btn-warning" (click)="pptPlayer='tijera';seleccionarOpcion()" [disabled]="expression">Tijera</button>
+            </div>
+            
+        </div>
+        <div class="p-2">
+            <h2 [hidden]="!resultado"><p><i class="fa fa-spinner fa-spin"> </i>Procesando...</p></h2>
+        </div>
+        <div [ngSwitch]="resultado">
+            <div *ngSwitchCase="'Ganaste'">
+                <h1 class="text-success">{{resultado}}</h1>
+            </div>
+            <div *ngSwitchCase="'Perdiste'">
+                <h1 class="text-danger">{{resultado}}</h1>
+            </div>
+            <div *ngSwitchCase="'Empate'">
+                <h1 class="text-warning">{{resultado}}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col d-flex justify-content-start">
+        <h1>CPU</h1>
+        <div [ngSwitch]="pptMaquina">
+            <div *ngSwitchCase="'piedra'">
+                <img src="../../../assets/imagenes/piedra.jpg" alt="" class="rounded-circle img-ppt">
+            </div>
+            <div *ngSwitchCase="'papel'">
+                <img src="../../../assets/imagenes/papel.jpg" alt="" class="rounded-circle img-ppt">
+            </div>
+            <div *ngSwitchCase="'tijera'">
+                <img src="../../../assets/imagenes/tijera.jpg" alt="" class="rounded-circle img-ppt">
+            </div>
+            <div *ngSwitchDefault>
+                <img src="../../../assets/imagenes/cualsera.png" alt="" class="rounded-circle img-ppt">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--img src="../../../assets/imagenes/cualsera.png" alt="" class="rounded-circle img-ppt" [(ngModel)]="pptMaquina">
+<img src="../../../assets/imagenes/{{pptMaquina}}.jpg" alt="" class="rounded-circle img-ppt" value="{{pptMaquina}}">
+<img src="../../../assets/imagenes/{{pptPlayer}}.jpg" alt="" class="rounded-circle img-ppt"-->
+
+
+

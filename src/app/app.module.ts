@@ -57,6 +57,7 @@ import { AngularFireModule, ɵAngularFireSchedulers } from '@angular/fire';
 import { AngularFireAuthModule} from '@angular/fire/auth';
 import { AngularFirestoreModule} from '@angular/fire/firestore';
 import { AngularFireStorageModule} from '@angular/fire/storage';
+import { PptComponent } from './componentes/ppt/ppt.component';
 //import { environment } from 'src/environments/environment';
 
 @NgModule({
@@ -83,7 +84,8 @@ import { AngularFireStorageModule} from '@angular/fire/storage';
     MapaDeGoogleComponent,
     JugadoresListadoComponent,
     InputJugadoresComponent,
-    SexoPipe
+    SexoPipe,
+    PptComponent
   ],
   imports: [
     BrowserModule,
