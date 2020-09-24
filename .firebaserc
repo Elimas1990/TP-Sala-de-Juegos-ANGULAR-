@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "lab4-juego": {
+      "hosting": {
+        "sala-de-juegos": [
+          "lab4-juego"
+        ]
+      }
+    }
+  }
+}

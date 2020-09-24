@@ -53,6 +53,11 @@ import { MapaDeGoogleComponent } from './componentes/mapa-de-google/mapa-de-goog
 import { AgmCoreModule } from '@agm/core';
 import { InputJugadoresComponent } from './componentes/input-jugadores/input-jugadores.component';
 import { SexoPipe } from './pipes/sexo.pipe';
+import { AngularFireModule, ɵAngularFireSchedulers } from '@angular/fire';
+import { AngularFireAuthModule} from '@angular/fire/auth';
+import { AngularFirestoreModule} from '@angular/fire/firestore';
+import { AngularFireStorageModule} from '@angular/fire/storage';
+//import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -85,6 +90,18 @@ import { SexoPipe } from './pipes/sexo.pipe';
     FormsModule,
     RuteandoModule,
     HttpModule,
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyCtFCTzeCqWBia6E1wmzRIX4PLVJaaHw6w",
+      authDomain: "lab4-juego.firebaseapp.com",
+      databaseURL: "https://lab4-juego.firebaseio.com",
+      projectId: "lab4-juego",
+      storageBucket: "lab4-juego.appspot.com",
+      messagingSenderId: "136574940126",
+      appId: "1:136574940126:web:dbeed1be9e209f7e46a34f"
+    }),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB6f8x4IjRlesQ3oETc6BXYQHVRTOlY3Ys'
     })
