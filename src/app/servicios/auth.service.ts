@@ -26,4 +26,8 @@ export class AuthService {
   public async register(usuario:Usuario){
     return this.afAuth.createUserWithEmailAndPassword(usuario.email,usuario.clave);
   }
+  public async usuarioActual(){
+    return this.afAuth.currentUser;
+  }
+  
 }

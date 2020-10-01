@@ -26,8 +26,8 @@
   <app-cabecera>  </app-cabecera>
   </div>
   <div class="card-body h-100">
-    <div class="container d-flex justify-content-center h-100" >
-      <div class="card w-50">
+    <div class="container d-flex justify-content-center h-100 mt-5" >
+      <div class="card w-50 shadow-lg">
         <div class="card-heading">
           <img src="./assets/imagenes/login.png" alt="Avatar" class="rounded mx-auto d-block w-50 my-2" >
         </div>
@@ -38,7 +38,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
               </div>
-              <input class="form-control" type="text" placeholder="Usuario"  [(ngModel)]="usuario"  name="uname" required>
+              <input class="form-control" type="text" placeholder="Usuario"  [(ngModel)]="usuario.email"  name="uname" required>
             </div>
 
             <!--label><b>Clave</b></label-->
@@ -46,12 +46,12 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
               </div>
-              <input class="form-control" type="password" placeholder="Clave"  [(ngModel)]="clave" name="psw" required>
+              <input class="form-control" type="password" placeholder="Clave"  [(ngModel)]="usuario.clave" name="psw" required>
             </div>
             <div class="row">
               <div class="col">
                 <div class="btn btn-group w-100">
-                  <button *ngIf="logeando"  (click)="MoverBarraDeProgreso()" class="btn btn-primary">Ingresar</button>
+                  <button *ngIf="logeando"  (click)="Entrar()" class="btn btn-primary">Ingresar</button>
                 </div>
                 <div class="btn btn-group w-100">
                   <button type="button" class="btn btn-danger">Cancelar</button>

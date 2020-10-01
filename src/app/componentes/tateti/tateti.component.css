@@ -1,0 +1,15 @@
+main{
+    display: grid;
+    grid-template-columns: 10vw 10vw 10vw;
+    grid-gap: 0px;
+}
+app-cuadrados{
+    border: 1px solid;
+    height: 10vw;
+}
+.col{
+    max-width: 30vw;
+}
+.btn-reiniciar{
+    min-width:  30vw;
+}

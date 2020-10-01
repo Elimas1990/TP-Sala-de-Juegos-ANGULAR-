@@ -58,6 +58,9 @@ import { AngularFireAuthModule} from '@angular/fire/auth';
 import { AngularFirestoreModule} from '@angular/fire/firestore';
 import { AngularFireStorageModule} from '@angular/fire/storage';
 import { PptComponent } from './componentes/ppt/ppt.component';
+import { environment } from '../environments/environment';
+import { TatetiComponent } from './componentes/tateti/tateti.component';
+import { CuadradosComponent } from './componentes/tateti/cuadrados/cuadrados.component';
 //import { environment } from 'src/environments/environment';
 
 @NgModule({
@@ -85,22 +88,16 @@ import { PptComponent } from './componentes/ppt/ppt.component';
     JugadoresListadoComponent,
     InputJugadoresComponent,
     SexoPipe,
-    PptComponent
+    PptComponent,
+    TatetiComponent,
+    CuadradosComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RuteandoModule,
     HttpModule,
-    AngularFireModule.initializeApp({
-      apiKey: "AIzaSyCtFCTzeCqWBia6E1wmzRIX4PLVJaaHw6w",
-      authDomain: "lab4-juego.firebaseapp.com",
-      databaseURL: "https://lab4-juego.firebaseio.com",
-      projectId: "lab4-juego",
-      storageBucket: "lab4-juego.appspot.com",
-      messagingSenderId: "136574940126",
-      appId: "1:136574940126:web:dbeed1be9e209f7e46a34f"
-    }),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,

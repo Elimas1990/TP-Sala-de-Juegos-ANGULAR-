@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-
+import {Usuario} from '../../clases/usuario';
 import {Subscription} from "rxjs";
 import {TimerObservable} from "rxjs/observable/TimerObservable";
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AuthService } from '../../servicios/auth.service';
+import { typeWithParameters } from '@angular/compiler/src/render3/util';
+import { firestore } from 'firebase';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,30 +16,53 @@ import {TimerObservable} from "rxjs/observable/TimerObservable";
 export class LoginComponent implements OnInit {
 
   private subscription: Subscription;
-  usuario = '';
-  clave= '';
+  usuario= new Usuario;
+
   progreso: number;
   progresoMensaje="esperando..."; 
   logeando=true;
   ProgresoDeAncho:string;
 
+
   clase="progress-bar progress-bar-info progress-bar-striped ";
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router) {
-      this.progreso=0;
-      this.ProgresoDeAncho="0%";
+    private router: Router,
+    private authService:AuthService,
+    private db:AngularFirestore) {
+      //this.progreso=0;
+      //this.ProgresoDeAncho="0%";
 
   }
 
   ngOnInit() {
+    this.usuario.email='admin@mail.com';
+    this.usuario.clave='123456'
   }
 
   Entrar() {
-    if (this.usuario === 'admin' && this.clave === 'admin') {
+    console.log(this.usuario);
+    this.authService.signIn(this.usuario).then(res =>{
+      console.log("login exitoso",res);
+      this.db.collection('logusuarios').add({
+        email:this.usuario.email,
+        fechaacceso:firestore.Timestamp.fromDate(new Date())
+      })
+    })
+    .then(docRef => {
+      localStorage.setItem('usuario',JSON.stringify(this.usuario));
+      this.authService.usuario = this.usuario;
+      this.router.navigate(['']);
+      console.log("Document written whith ID: ",this.authService.usuario) ;
+    })
+    .catch(error =>{
+      console.log("error ending: ",error);
+      this.router.navigate(['error']);
+    });
+    /*if (this.usuario.email === 'admin' && this.usuario.clave === 'admin') {
       this.router.navigate(['/Principal']);
-    }
+    }*/
   }
   MoverBarraDeProgreso() {
     

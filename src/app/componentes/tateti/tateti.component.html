@@ -1,0 +1,51 @@
+<!--div class="btn-group-vertical">
+    <div class="btn btn-group btn-group-lg pb-0 border-0">
+        <button class="btn btn-default border border-danger btntateti" (click)="selectBtn(0,$event.target)" >{{valores[0]}}
+        </button>
+        <button class="btn btn-default border border-danger btntateti" (click)="selectBtn(1,$event.target)" >{{valores[1]}}
+        </button>
+        <button class="btn btn-default border border-danger btntateti" (click)="selectBtn(2,$event.target)" >{{valores[2]}}
+        </button>
+    </div>
+    <div class="btn btn-group btn-group-lg py-0 border-0">
+        <button class="btn btn-default border border-danger btntateti" (click)="selectBtn(3,$event.target)" >{{valores[3]}}
+        </button>
+        <button class="btn btn-default border border-danger btntateti" (click)="selectBtn(4,$event.target)" >{{valores[4]}}
+        </button>
+        <button class="btn btn-default border border-danger btntateti" (click)="selectBtn(5,$event.target)" >{{valores[5]}}
+        </button>
+    </div>
+    <div class="btn btn-group btn-group-lg pt-0 border-0 ">
+        <button class="btn btn-default border border-danger btntateti" (click)="selectBtn(6,$event.target)" >{{valores[6]}}
+        </button>
+        <button class="btn btn-default border border-danger btntateti" (click)="selectBtn(7,$event.target)" >{{valores[7]}}
+        </button>
+        <button class="btn btn-default border border-danger btntateti" (click)="selectBtn(8,$event.target)" >{{valores[8]}}
+        </button>
+    </div>
+</div-->
+<div class="container mt-5">
+    <div class="row justify-content-center mb-5">
+        <div class="col ">
+            <h3 class="d-inline mr-5">Mueve jugador: {{player}}</h3> <h3 class="d-inline ml-5" *ngIf="ganador">Ganador: {{ganador}}</h3>
+        </div>
+     
+    </div>
+    <div class="row justify-content-center">
+        <div class="col">
+            <main>
+                <app-cuadrados
+                *ngFor="let val of cuadrados; let i = index"
+                [value]="val"
+                (click)="hacerMovimiento(i)">
+                </app-cuadrados>
+            </main>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col ">
+            <button class="btn btn-primary btn-reiniciar" (click)="newGame()">Reiniciar Juego</button>
+        </div>
+    </div>
+</div>
+
