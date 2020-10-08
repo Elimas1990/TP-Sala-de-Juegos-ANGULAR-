@@ -61,6 +61,7 @@ import { PptComponent } from './componentes/ppt/ppt.component';
 import { environment } from '../environments/environment';
 import { TatetiComponent } from './componentes/tateti/tateti.component';
 import { CuadradosComponent } from './componentes/tateti/cuadrados/cuadrados.component';
+import { SetresultadoComponent } from './componentes/setresultado/setresultado.component';
 //import { environment } from 'src/environments/environment';
 
 @NgModule({
@@ -90,7 +91,8 @@ import { CuadradosComponent } from './componentes/tateti/cuadrados/cuadrados.com
     SexoPipe,
     PptComponent,
     TatetiComponent,
-    CuadradosComponent
+    CuadradosComponent,
+    SetresultadoComponent
   ],
   imports: [
     BrowserModule,

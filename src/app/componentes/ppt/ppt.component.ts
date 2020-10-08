@@ -1,7 +1,9 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { $$iterator } from 'rxjs/internal/symbol/iterator';
-import { JuegoPiedraPapelTijera } from '../../clases/juego-piedra-papel-tijera'
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AuthService } from '../../servicios/auth.service';
+import { firestore } from 'firebase';
+
 @Component({
   selector: 'app-ppt',
   templateUrl: './ppt.component.html',
@@ -17,8 +19,20 @@ export class PptComponent implements OnInit {
   play:string;
   Tiempo:number;
   expression:boolean;
-  constructor() {this.Tiempo=5;  }
-
+  
+  constructor(private db:AngularFirestore,
+    private authService:AuthService) {this.Tiempo=5;  }
+  
+  setResultado(resultado,juego){
+    this.authService.usuarioActual().then(x => { 
+        this.db.collection('resultJuegos').add({
+          usuario:x.email,
+          resultado:resultado,
+          juego:juego,
+          fechaJuego:firestore.Timestamp.fromDate(new Date())
+        })
+    })
+  }
   ngOnInit(): void {
   }
   resetJuego(){
@@ -75,5 +89,6 @@ export class PptComponent implements OnInit {
         break;
       }
     }
+    this.setResultado(this.resultado,"Piedra Papel o Tijera");
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../servicios/auth.service';
 
 @Component({
   selector: 'app-cabecera',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CabeceraComponent implements OnInit {
 
-  constructor() { }
+  usuarioLogueado:any;
+  
+  constructor(private authService:AuthService) { 
+    this.authService.usuarioActual().then(x => { 
+        console.log(x.email); 
+        this.usuarioLogueado=x.email;
+        if(x.email){
+
+        }
+    })
+  }
 
   ngOnInit() {
+    
+    //this.usuarioLogueado=this.authService.getCurrenUser();
   }
 
 }

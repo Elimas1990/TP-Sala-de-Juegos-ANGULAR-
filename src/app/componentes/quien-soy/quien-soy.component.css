@@ -6,6 +6,6 @@
     width: 100%;
 }
 
-.card-footer{
-  bottom: 0;
+.card{
+  height: 100vw;
 }
