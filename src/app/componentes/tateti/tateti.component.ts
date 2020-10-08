@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { textChangeRangeIsUnchanged } from 'typescript';
 import {SetresultadoComponent} from '../setresultado/setresultado.component';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from '../../servicios/auth.service';
-import { firestore } from 'firebase';
+
 
 @Component({
   selector: 'app-tateti',
@@ -18,8 +17,7 @@ export class TatetiComponent implements OnInit {
   cuadrados:any[];
   siguiente:boolean;
   ganador:string;
-  constructor(private db:AngularFirestore,
-    private authService:AuthService) { }
+  constructor(private authService:AuthService) { }
 
   ngOnInit(): void {
     this.newGame();
@@ -39,16 +37,7 @@ export class TatetiComponent implements OnInit {
     }
     this.ganador = this.chequeaGanador();
   }
-  setResultado(resultado,juego){
-    this.authService.usuarioActual().then(x => { 
-        this.db.collection('resultJuegos').add({
-          usuario:x.email,
-          resultado:resultado,
-          juego:juego,
-          fechaJuego:firestore.Timestamp.fromDate(new Date())
-        })
-    })
-  }
+
   chequeaGanador(){
     const lineas = [
       [0,1,2],
@@ -67,7 +56,7 @@ export class TatetiComponent implements OnInit {
         this.cuadrados[a] === this.cuadrados[b] &&
         this.cuadrados[a] === this.cuadrados[c] 
       ){
-        this.setResultado(this.cuadrados[a],"TaTeTi")
+        this.authService.setResultado(this.cuadrados[a],"TaTeTi")
         return this.cuadrados[a];
       }
     }

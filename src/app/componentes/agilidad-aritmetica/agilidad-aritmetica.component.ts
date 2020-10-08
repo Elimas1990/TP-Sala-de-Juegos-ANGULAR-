@@ -1,9 +1,9 @@
 import { Component, OnInit ,Input,Output,EventEmitter} from '@angular/core';
 import { JuegoAgilidad } from '../../clases/juego-agilidad'
 
-import { AngularFirestore } from '@angular/fire/firestore';
+
 import { AuthService } from '../../servicios/auth.service';
-import { firestore } from 'firebase';
+
 import {Subscription} from "rxjs";
 import {TimerObservable} from "rxjs/observable/TimerObservable";
 import { isBreakStatement } from 'typescript';
@@ -37,8 +37,7 @@ export class AgilidadAritmeticaComponent implements OnInit {
     this.operador=this.posiblesOperadores[Math.floor(Math.random() * this.posiblesOperadores.length)];
     this.segundoNumero= Math.floor(Math.random() * this.primerNumero);
   }
-   constructor(private db:AngularFirestore,
-    private authService:AuthService) {
+   constructor(private authService:AuthService) {
      this.ocultarVerificar=true;
      this.Tiempo=5; 
      
@@ -71,18 +70,7 @@ export class AgilidadAritmeticaComponent implements OnInit {
       }, 900);
 
   }
-  setResultado(resultado,juego){
-    this.authService.usuarioActual().then(x => { 
-        this.db.collection('resultJuegos').add({
-          usuario:x.email,
-          resultado:resultado,
-          juego:juego,
-          fechaJuego:firestore.Timestamp.fromDate(new Date())
-        })
-    })
-    
-  }
-  
+
   verificar()
   {
     switch(this.operador){
@@ -100,10 +88,10 @@ export class AgilidadAritmeticaComponent implements OnInit {
     }
     if(this.resultado==this.nuevoJuego.numeroIngresado){
       this.nuevoJuego.gano="Correcto";
-      this.setResultado("Correcto","Agilidad Aritmética");
+      this.authService.setResultado("Correcto","Agilidad Aritmética");
     }else{
       this.nuevoJuego.gano=null;
-      this.setResultado("Incorrecto","Agilidad Aritmética");
+      this.authService.setResultado("Incorrecto","Agilidad Aritmética");
     }
     
     

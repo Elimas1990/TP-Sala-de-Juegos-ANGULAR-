@@ -1,8 +1,7 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from '../../servicios/auth.service';
-import { firestore } from 'firebase';
+
 
 @Component({
   selector: 'app-ppt',
@@ -20,19 +19,9 @@ export class PptComponent implements OnInit {
   Tiempo:number;
   expression:boolean;
   
-  constructor(private db:AngularFirestore,
-    private authService:AuthService) {this.Tiempo=5;  }
+  constructor(private authService:AuthService) {this.Tiempo=5;  }
   
-  setResultado(resultado,juego){
-    this.authService.usuarioActual().then(x => { 
-        this.db.collection('resultJuegos').add({
-          usuario:x.email,
-          resultado:resultado,
-          juego:juego,
-          fechaJuego:firestore.Timestamp.fromDate(new Date())
-        })
-    })
-  }
+
   ngOnInit(): void {
   }
   resetJuego(){
@@ -89,6 +78,6 @@ export class PptComponent implements OnInit {
         break;
       }
     }
-    this.setResultado(this.resultado,"Piedra Papel o Tijera");
+    this.authService.setResultado(this.resultado,"Piedra Papel o Tijera");
   }
 }

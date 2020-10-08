@@ -11,18 +11,12 @@ export class CabeceraComponent implements OnInit {
   usuarioLogueado:any;
   
   constructor(private authService:AuthService) { 
-    this.authService.usuarioActual().then(x => { 
-        console.log(x.email); 
-        this.usuarioLogueado=x.email;
-        if(x.email){
-
-        }
-    })
+    
   }
 
   ngOnInit() {
     
-    //this.usuarioLogueado=this.authService.getCurrenUser();
+    this.usuarioLogueado=this.authService.usuario.email;
   }
 
 }

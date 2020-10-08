@@ -5,6 +5,8 @@ import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 import { first } from 'rxjs-compat/operator/first';
 import { Observable } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { firestore } from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +19,7 @@ export class AuthService {
   user: Observable<firebase.User | null >
 
   constructor(private afAuth:AngularFireAuth,
+    private db:AngularFirestore,
     private router:Router) {
       this.user = this.afAuth.authState;
      }
@@ -34,22 +37,18 @@ export class AuthService {
   public async usuarioActual(){
     return this.afAuth.currentUser;
   }
-  public getCurrenUser(){
-   /* var user = firebase.auth().currentUser;
-    var name, email, photoUrl, uid, emailVerified;
-
-    if (user != null) {
-      name = user.displayName;
-      email = user.email;
-      photoUrl = user.photoURL;
-      emailVerified = user.emailVerified;
-      uid = user.uid;  
-    }
-    
-    return user.email;*/
-    this.usuarioActual().then(x => { 
-       return x.email;
-    })
+  public setResultado(resultado,juego){
+      this.usuarioActual().then(x => { 
+        this.db.collection('resultJuegos').add({
+          usuario:x.email,
+          resultado:resultado,
+          juego:juego,
+          fechaJuego:firestore.Timestamp.fromDate(new Date())
+        })
+      })
+     
   }
+
+  
   
 }
