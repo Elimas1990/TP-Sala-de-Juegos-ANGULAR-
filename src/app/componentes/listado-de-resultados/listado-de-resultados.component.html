@@ -15,10 +15,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let juego of listado">
-        <td>{{juego.nombre}} </td>
-        <td>{{juego.jugador}} </td> 
-        <td *ngIf="juego.gano">Gano </td>   
-        <td *ngIf="!juego.gano">Perdio</td>     
+        <td>{{juego.juego}} </td>
+        <td>{{juego.usuario}} </td> 
+        <td>{{juego.resultado}} </td>    
       </tr>
      
     </tbody>
